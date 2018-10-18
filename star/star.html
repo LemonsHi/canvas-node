@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script type="text/javascript">
+      window.onload = function () {
+        var canvas = document.getElementById("canvas")
+
+        canvas.width = 800
+        canvas.height = 800
+
+        context = canvas.getContext('2d')
+
+        context.lineWidth = 10
+        context.lineJoin = 'round'
+        drawStar(context, 200, 300, 400, 400, 0)
+
+      }
+
+      // 绘制五角星函数，可复用
+      function drawStar (ctx, r, R, x, y, rot) {
+        ctx.beginPath()
+        for (var i = 0; i < 5; i++) {
+          ctx.lineTo(Math.cos((18 + i * 72 - rot) / 180 * Math.PI) * R + x, -Math.sin((18 + i * 72 - rot) / 180 * Math.PI) * R + x)
+          ctx.lineTo(Math.cos((52 + i * 72 - rot) / 180 * Math.PI) * r + x, -Math.sin((52 + i * 72 - rot) / 180 * Math.PI) * r + x)
+        }
+        ctx.closePath()
+        ctx.stroke()
+      }
+    </script>
+  </body>
+</html>
