@@ -20,3 +20,51 @@ canvas 学习笔记
   ![](./star/miterLimit.png)
 
 </div>
+
+## 2018-10-19 笔记
+- 1. 从图形学角度去思考 `canvas` 画图
+  - 1.1 绘制基本轮廓（路径）
+  - 1.2 利用图形变换的形式来绘制
+
+- 2. 在 `canvas` 中提供了三种图形变换: `translate`、`roate`、`scale`
+
+**注意：**
+>1. `canvas` 图形变换是叠加的。
+
+**解决办法：**
+>1. 逆转变换
+```javascript
+  context.translate(100, 100)
+  ...
+  context.translate(-100, -100)
+```
+>2. 使用 `save` 和 `restore` 方法处理
+```javascript
+context.save()
+...
+context.translate(100, 100)
+...
+context.restore()
+```
+
+- 3. `scale` 注意的问题
+  - 3.1 使用 `scale` 进行缩放变换时，不仅仅是对图形大小的变换，其他数值也会变换，比如：坐标、线条宽度、大小...
+
+**解决办法：**
+>1. 放弃某些图形属性，从而避免该问题
+>2. 或使用自己实现缩放功能函数
+
+- 4. 变换矩阵 `transform` 的使用
+
+<div align=center>
+
+  ![](./transform/变换矩阵.png)
+
+</div>
+
+>1. 使用方法 `transform(a, b, c, d, e, f)`
+>2. 使用 `transform` 进行缩放操作同样会出现 `scale` 同样的问题
+>3. 在同一个 `save` 和 `restore` 中多次使用 `transform` 会出现效果叠加的问题
+
+**解决办法：**
+>1. 使用 `setTransform` 函数来处理
