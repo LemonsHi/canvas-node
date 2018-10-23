@@ -68,3 +68,20 @@ context.restore()
 
 **解决办法：**
 >1. 使用 `setTransform` 函数来处理
+
+## 2018-10-23 笔记
+- 1. 颜色渐变
+  - 1.1 createLinearGradient(Xstar, Ystar, Xend, Yend) 创建线性渐变
+  - 1.2 createRedialGradient(X0, Y0, R0, X1, Y1, R1) 创建放射性渐变
+  - 1.3 addColorStop(stop, color) 渐变状态
+
+>addColorStop 中的第一个参数是 float 类型
+>当渐变不足画布，剩余部分已终点颜色填充
+>当渐变超出画布，展示画布中的渐变颜色
+
+**解决办法：** 对于渐变不足画布问题，可以使用 rect 或其他框框将其框起来展示
+
+- 2. 填充图片等
+  - 2.1 createPattern(img, repeat-style) 其中 img 为 JavsScript 中的 img 对象，reapeat-style 有四个值：no-repeat、repeat-x、repeat-y、repeat，分别代表：不填充、向 x 轴填充、向 y 轴填充、同时向两个方向填充
+  - 2.2 createPattern(canvas, repeat-style) 其中 canvas 为 canvas 画布
+  - 2.3 createPattern(video, repeat-style) 其中 video 为视频对象
